@@ -1,4 +1,3 @@
 source "$NERVES_DEFCONFIG_DIR/package/compulab/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/sharutils/Config.in"
-source "$NERVES_DEFCONFIG_DIR/package/tpm2-openssl/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/tpm2-tss-engine/Config.in"

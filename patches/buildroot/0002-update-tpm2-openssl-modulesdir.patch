@@ -1,0 +1,24 @@
+From 401b48de53d9dbfda18a3040cfc86366d2447507 Mon Sep 17 00:00:00 2001
+From: Alex McLain <alex@alexmclain.com>
+Date: Mon, 4 Nov 2024 21:28:20 -0800
+Subject: [PATCH 2/2] update tpm2-openssl modulesdir
+
+---
+ package/tpm2-openssl/tpm2-openssl.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package/tpm2-openssl/tpm2-openssl.mk b/package/tpm2-openssl/tpm2-openssl.mk
+index ed590c2f47..7ef70cf954 100644
+--- a/package/tpm2-openssl/tpm2-openssl.mk
++++ b/package/tpm2-openssl/tpm2-openssl.mk
+@@ -14,6 +14,6 @@ TPM2_OPENSSL_DEPENDENCIES = host-pkgconf openssl tpm2-tss
+ # Provide --with-modulesdir to avoid using abs_builddir and DESTDIR
+ # (also defined as absolute path) at the same time to define modules
+ # install path (am__installdirs).
+-TPM2_OPENSSL_CONF_OPTS = --with-modulesdir="/usr/lib/ossl-modules"
++TPM2_OPENSSL_CONF_OPTS = --with-modulesdir="/usr/lib/engines-3"
+ 
+ $(eval $(autotools-package))
+-- 
+2.34.1
+
