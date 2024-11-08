@@ -66,7 +66,7 @@ defmodule NervesSystemIotGateIMX8Plus.MixProject do
       {
         :nerves_system_br,
         git: "https://github.com/redwirelabs/nerves_system_br_iot_gate_imx8plus.git",
-        ref: "4b2a712",
+        ref: "aa6e218c",
         runtime: false
       },
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
