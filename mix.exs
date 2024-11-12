@@ -62,7 +62,12 @@ defmodule NervesSystemIotGateIMX8Plus.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.11", runtime: false},
-      {:nerves_system_br, "1.29.0", runtime: false},
+      {
+        :nerves_system_br,
+        git: "https://github.com/redwirelabs/redwire_nerves_system_br.git",
+        ref: "1.29.0-RWL.1",
+        runtime: false
+      },
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 14.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.34", only: :docs, runtime: false}
