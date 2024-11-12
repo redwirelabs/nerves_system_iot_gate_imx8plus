@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.0
+
+Added support for trusted platform modules (TPM).
+
 ## v0.1.0
 
 Preliminary release that boots Nerves. Peripherals have not been validated.
