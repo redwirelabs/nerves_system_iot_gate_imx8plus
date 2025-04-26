@@ -8,7 +8,7 @@ This is the base Nerves System configuration for the
 
 | Feature        | Description                                                 |
 | -------------- | ----------------------------------------------------------- |
-| CPU            | 1.8 GHz quad-core Cortex-A53 (64-bi)                        |
+| CPU            | 1.8 GHz quad-core Cortex-A53 (64-bit)                        |
 | NPU            | AI/ML Neural Processing Unit, up to 2.3 TOPS                |
 | MCU            | ARM Cortex-M7, 800Mhz                                       |
 | Storage        | eMMC                                                        |
