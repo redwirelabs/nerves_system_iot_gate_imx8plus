@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.4.0
+
+- Dependencies
+  - [Buildroot 2025.02.1](https://lore.kernel.org/buildroot/60b8483c-b717-41ce-a406-bceb71c3a089@rnout.be/T/)
+  - [Arm Trusted Firmware lf-6.6.23-2.0.0](https://github.com/nxp-imx/meta-imx/blob/rel_imx_6.6.23_2.0.0/meta-imx-bsp/recipes-bsp/imx-atf/imx-atf_2.10.bb)
+  - [OP-TEE OS lf-6.6.23-2.0.0](https://github.com/nxp-imx/meta-imx/blob/rel_imx_6.6.23_2.0.0/meta-imx-bsp/recipes-security/optee/optee-os_4.2.0.imx.bb)
+  - [Linux v6.6.23 #96ad4675347](https://github.com/compulab-yokneam/linux-compulab/tree/96ad4675347)
+  - [U-Boot 2023.04 #74267db6002](https://github.com/compulab-yokneam/u-boot-compulab/tree/74267db6002)
+
 ## v0.3.0
 
 - Security
