@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-COMPULAB_VERSION = 14f548ef600
+COMPULAB_VERSION = b43fe71dba3
 COMPULAB_SITE = https://github.com/compulab-yokneam/buildroot/archive
 COMPULAB_SOURCE = $(COMPULAB_VERSION).tar.gz
 
