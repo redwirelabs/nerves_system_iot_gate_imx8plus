@@ -2,6 +2,12 @@
 
 set -ex
 
+# Make sure we copy over the expected iwlwifi firmware files.
+# The Buildroot linux-firmware package is only copying over iwlwifi-so-a0-gf-a0*.{ucode,pnvm},
+# but the `iwlwifi` driver is looking for iwlwifi-ty-a0-gf-a0*.{ucode,pnvm} files.
+cp $BUILD_DIR/linux-firmware-20250211/iwlwifi-ty-a0-gf-a0*.ucode $TARGET_DIR/lib/firmware
+cp $BUILD_DIR/linux-firmware-20250211/iwlwifi-ty-a0-gf-a0.pnvm $TARGET_DIR/lib/firmware
+
 # Create the fwup ops script for handling MicroSD/eMMC operations at runtime
 mkdir -p $TARGET_DIR/usr/share/fwup
 
