@@ -31,15 +31,11 @@ The IOT-GATE-IMX8PLUS gateway expects the bootloader to be located on hardware B
 
 ### Wi-Fi
 
-The IOT-GATE-IMX8PLUS has support for an installable Intel Wi-Fi 6 AX210 / Bluetooth module.
-
-Wi-Fi can be enabled by loading the kernel module.
+The IOT-GATE-IMX8PLUS can be ordered with an Intel Wi-Fi 6 AX210 / Bluetooth module. Wi-Fi can be enabled by loading the following kernel module.
 
 ```elixir
 iex> cmd "modprobe iwlwifi"
 ```
-
-_Please note: AP mode has not been tested._
 
 ### Building firmware
 

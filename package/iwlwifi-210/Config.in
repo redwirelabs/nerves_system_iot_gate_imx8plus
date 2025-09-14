@@ -1,0 +1,5 @@
+config BR2_PACKAGE_IWLWIFI_210
+	bool "Intel iwlwifi 210"
+	help
+	  Firmware files for the Intel Wifi 210 devices supported by
+	  the iwlwifi kernel driver.
