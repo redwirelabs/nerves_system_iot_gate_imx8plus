@@ -8,15 +8,15 @@ This is the base Nerves System configuration for the
 
 | Feature        | Description                                                 |
 | -------------- | ----------------------------------------------------------- |
-| CPU            | 1.8 GHz quad-core Cortex-A53 (64-bit)                        |
+| CPU            | 1.8 GHz quad-core Cortex-A53 (64-bit)                       |
 | NPU            | AI/ML Neural Processing Unit, up to 2.3 TOPS                |
 | MCU            | ARM Cortex-M7, 800Mhz                                       |
 | Storage        | eMMC                                                        |
-| Linux kernel   | 6.1                                                         |
+| Linux kernel   | 6.6                                                         |
 | IEx terminal   | UART `ttymxc1`                                              |
 | GPIO, I2C, SPI | Yes - [Elixir Circuits](https://github.com/elixir-circuits) |
 | Display        | Yes                                                         |
-| Ethernet       | Yes                                                         |
+| Ethernet       | Yes - ETH2 port is recognized as `eth0`                     |
 | WiFi           | Yes                                                         |
 | Bluetooth      | Yes                                                         |
 | RTC            | Yes                                                         |
@@ -25,9 +25,19 @@ This is the base Nerves System configuration for the
 [Image credit](#compulab): This image is from
 [compulab.com](https://www.compulab.com/products/iot-gateways/iot-gate-imx8plus-industrial-arm-iot-gateway).
 
-### Getting started
+## Getting started
 
 The IOT-GATE-IMX8PLUS gateway expects the bootloader to be located on hardware BOOT partition 1. When flashing firmware, ensure that both the bootloader and a complete disk image, generated using the fwup CLI tool, are provided.
+
+### Wi-Fi
+
+The IOT-GATE-IMX8PLUS can be ordered with an Intel Wi-Fi 6 AX210 / Bluetooth module. Wi-Fi can be enabled by loading the following kernel module.
+
+```elixir
+iex> cmd "modprobe iwlwifi"
+```
+
+### Building firmware
 
 #### Prerequisites
 
