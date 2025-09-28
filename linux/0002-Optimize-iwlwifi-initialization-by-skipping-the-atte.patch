@@ -1,0 +1,36 @@
+From f90ff9a4911eb77fa12cbb2bf66b310b59502614 Mon Sep 17 00:00:00 2001
+From: Josh Kalderimis <josh.kalderimis@gmail.com>
+Date: Fri, 26 Sep 2025 11:36:59 +1200
+Subject: [PATCH] Optimize `iwlwifi` initialization by skipping the attempt to
+ load a file that doesn't exist
+
+After seeing WiFi take 60 seconds to go from "module loaded" to "loaded firmware", a deep dive revealed that a standard install of `iwlwifi` doesn't include a file which the driver attempts to load for debugging purposes, `iwl-debug-yoyo.bin`.
+https://forums.gentoo.org/viewtopic-t-1163880-start-0.html states you can pass `enabled_ini=0` when loading the module, but this seems to have other side effects which caused WiFi to not complete initialization.
+The simplest solution for 99.99999% of users of the `iwlwifi` driver is to skip the `iwl_dbg_tlv_load_bin` function call altogether, reducing the time from power-on to connected WiFi from 78 seconds to 18 seconds.
+---
+ drivers/net/wireless/intel/iwlwifi/iwl-drv.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/intel/iwlwifi/iwl-drv.c b/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
+index 8faf4e7872bb..b67b56990cf9 100644
+--- a/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
++++ b/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
+@@ -1693,7 +1693,14 @@ static void iwl_req_fw_callback(const struct firmware *ucode_raw, void *context)
+ 	/* We have our copies now, allow OS release its copies */
+ 	release_firmware(ucode_raw);
+ 
+-	iwl_dbg_tlv_load_bin(drv->trans->dev, drv->trans);
++	/*
++	 * A standard install of `iwlwifi` doesn't include a firmware file
++	 * used for debugging, which causes the driver to try loading the
++	 * file in a loop for a minute. By commenting out the following
++	 * line we speed up the WiFi initialization by a minute, allowing
++	 * the system to be started and connected in under 20 seconds.
++	 */
++	// iwl_dbg_tlv_load_bin(drv->trans->dev, drv->trans);
+ 
+ 	mutex_lock(&iwlwifi_opmode_table_mtx);
+ 	switch (fw->type) {
+-- 
+2.39.5 (Apple Git-154)
+
