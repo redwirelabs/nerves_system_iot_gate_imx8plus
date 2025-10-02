@@ -37,6 +37,34 @@ The IOT-GATE-IMX8PLUS can be ordered with an Intel Wi-Fi 6 AX210 / Bluetooth mod
 iex> cmd "modprobe iwlwifi"
 ```
 
+### Firmware validation
+
+Firmware is validated by default using the `nerves_fw_autovalidate` U-Boot variable.
+
+If you want to enable explicit firmware validation (highly recommended), you will need to set the `nerves_fw_autovalidate` variable to `1` in the U-Boot environment, and implement some custom logic to validate the firmware.
+
+e.g, you can add the following code to your `Application.start/2` function:
+
+```elixir
+# Disable firmware auto validation
+if Nerves.Runtime.KV.get("nerves_fw_autovalidate") == "1" do
+  Nerves.Runtime.KV.put("nerves_fw_autovalidate", "0")
+end
+```
+
+And then later in your application's code, after you have determined that the firmware is valid to continue using:
+
+```elixir
+# Validate firmware
+Nerves.Runtime.validate_firmware()
+```
+
+You can read more about firmware validation in the Nerves Runtime documentation:
+
+- [Assisted firmware validation and automatic revert](https://hexdocs.pm/nerves_runtime/readme.html#assisted-firmware-validation-and-automatic-revert)
+- [U-Boot assisted automatic revert](https://hexdocs.pm/nerves_runtime/readme.html#u-boot-assisted-automatic-revert)
+- [Nerves.Runtime.html#validate_firmware/1](https://hexdocs.pm/nerves_runtime/Nerves.Runtime.html#validate_firmware/1)
+
 ### Building firmware
 
 #### Prerequisites
