@@ -39,24 +39,21 @@ iex> cmd "modprobe iwlwifi"
 
 ### Firmware validation
 
-Firmware is validated by default using the `nerves_fw_autovalidate` U-Boot variable.
+U-Boot supports running an alternate boot command if the device reboots multiple times. Nerves hooks into this workflow, incorporating the concept of firmware validation. This allows U-Boot to orchestrate the reverting to the previous firmware upon a device rebooting if the current firmware hasn't been validated.
 
-If you want to enable explicit firmware validation (highly recommended), you will need to set the `nerves_fw_autovalidate` variable to `1` in the U-Boot environment, and implement some custom logic to validate the firmware.
+This feature has been enabled, and thus requires explicit firmware validation once it is determined that the running firmware is good to continue using.
 
-e.g, you can add the following code to your `Application.start/2` function:
-
-```elixir
-# Disable firmware auto validation
-if Nerves.Runtime.KV.get("nerves_fw_autovalidate") == "1" do
-  Nerves.Runtime.KV.put("nerves_fw_autovalidate", "0")
-end
-```
-
-And then later in your application's code, after you have determined that the firmware is valid to continue using:
+This can be achieved by adding the following to your application's code:
 
 ```elixir
 # Validate firmware
 Nerves.Runtime.validate_firmware()
+```
+
+The `bootlimit` feature has also been enabled, which tells U-Boot to reboot the current firmware a maxiumum of X times before reverting. This is currently set to **4**, and can be configured with:
+
+```elixir
+Nerves.Runtime.KV.set("bootlimit", "2") # or your preferred boot count
 ```
 
 You can read more about firmware validation in the Nerves Runtime documentation:
