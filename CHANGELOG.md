@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.6.0
+
+- Updated to nerves_system_br 1.33.0 / OTP 28
+- Migrated to the Buildroot built-in AX210 Wi-Fi drivers
+- Added hwclock for RTC management
+
+- Dependencies
+  - [nerves_system_br 1.33.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.0)
+  - [Buildroot 2025.11](https://lore.kernel.org/buildroot/87bjk439tj.fsf@dell.be.48ers.dk/T/)
+  - [Erlang/OTP 28.3](https://erlang.org/download/OTP-28.3.README.md)
+
 ## v0.5.0
 
 - Added support for the Intel AX210 Wi-Fi module
