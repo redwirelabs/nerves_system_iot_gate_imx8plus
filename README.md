@@ -37,6 +37,31 @@ The IOT-GATE-IMX8PLUS can be ordered with an Intel Wi-Fi 6 AX210 / Bluetooth mod
 iex> cmd "modprobe iwlwifi"
 ```
 
+### Firmware validation
+
+U-Boot supports running an alternate boot command if the device reboots multiple times. Nerves hooks into this workflow, incorporating the concept of firmware validation. This allows U-Boot to orchestrate the reverting to the previous firmware upon a device rebooting if the current firmware hasn't been validated.
+
+This feature has been enabled, and thus requires explicit firmware validation once it is determined that the running firmware is good to continue using.
+
+This can be achieved by adding the following to your application's code:
+
+```elixir
+# Validate firmware
+Nerves.Runtime.validate_firmware()
+```
+
+The `bootlimit` feature has also been enabled, which tells U-Boot to reboot the current firmware a maxiumum of X times before reverting. This is currently set to **4**, and can be configured with:
+
+```elixir
+Nerves.Runtime.KV.set("bootlimit", "2") # or your preferred boot count
+```
+
+You can read more about firmware validation in the Nerves Runtime documentation:
+
+- [Assisted firmware validation and automatic revert](https://hexdocs.pm/nerves_runtime/readme.html#assisted-firmware-validation-and-automatic-revert)
+- [U-Boot assisted automatic revert](https://hexdocs.pm/nerves_runtime/readme.html#u-boot-assisted-automatic-revert)
+- [Nerves.Runtime.html#validate_firmware/1](https://hexdocs.pm/nerves_runtime/Nerves.Runtime.html#validate_firmware/1)
+
 ### Building firmware
 
 #### Prerequisites
